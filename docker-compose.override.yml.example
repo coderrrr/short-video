@@ -1,0 +1,72 @@
+# Docker Compose 覆盖配置示例
+# 用于本地开发环境的特定配置
+# 
+# 使用方法：
+# 1. 复制此文件为 docker-compose.override.yml
+# 2. 根据需要修改配置
+# 3. docker-compose 会自动合并 docker-compose.yml 和 docker-compose.override.yml
+#
+# 注意：docker-compose.override.yml 不应提交到版本控制
+
+version: '3.8'
+
+services:
+  # MySQL 开发配置
+  mysql:
+    # 开发环境可以暴露更多端口用于调试
+    ports:
+      - "3306:3306"
+    # 开发环境可以使用更宽松的配置
+    command: >
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --max_connections=200
+      --innodb_buffer_pool_size=256M
+      --general_log=1
+      --general_log_file=/var/log/mysql/general.log
+      --slow_query_log=1
+      --slow_query_log_file=/var/log/mysql/slow.log
+      --long_query_time=2
+    volumes:
+      # 挂载日志目录
+      - ./logs/mysql:/var/log/mysql
+
+  # 后端开发配置
+  backend:
+    # 开发环境启用代码热重载
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload --log-level debug
+    
+    # 开发环境额外的环境变量
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+      - PYTHONUNBUFFERED=1
+    
+    # 开发环境挂载更多目录
+    volumes:
+      - ./backend/app:/app/app
+      - ./backend/tests:/app/tests
+      - ./backend/pytest.ini:/app/pytest.ini
+      - storage_data:/app/storage
+      - ./logs/backend:/app/logs
+    
+    # 开发环境可以暴露调试端口
+    ports:
+      - "8000:8000"
+      # Python 调试端口（如需要）
+      # - "5678:5678"
+
+  # 管理后台开发配置（如果使用容器运行）
+  # admin-web:
+  #   build:
+  #     context: ./admin-web
+  #     dockerfile: Dockerfile.dev
+  #   command: npm run dev
+  #   volumes:
+  #     - ./admin-web/src:/app/src
+  #     - ./admin-web/public:/app/public
+  #   ports:
+  #     - "5173:5173"
+  #   environment:
+  #     - VITE_API_BASE_URL=http://localhost:8000

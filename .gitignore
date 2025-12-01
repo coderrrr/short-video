@@ -1,0 +1,120 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.hypothesis/
+*.log
+
+# 虚拟环境
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 数据库
+*.db
+*.sqlite
+*.sqlite3
+
+# 存储文件
+storage/
+uploads/
+media/
+
+# Flutter
+frontend/.dart_tool/
+frontend/.flutter-plugins
+frontend/.flutter-plugins-dependencies
+frontend/.packages
+frontend/.pub-cache/
+frontend/.pub/
+frontend/build/
+frontend/ios/Flutter/flutter_export_environment.sh
+frontend/ios/Flutter/Generated.xcconfig
+frontend/ios/Runner/GeneratedPluginRegistrant.*
+frontend/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+frontend/android/.gradle
+frontend/android/captures/
+frontend/android/gradlew
+frontend/android/gradlew.bat
+frontend/android/local.properties
+frontend/android/**/GeneratedPluginRegistrant.java
+frontend/android/key.properties
+frontend/*.iml
+frontend/android/.idea
+frontend/android/.gradle
+frontend/ios/Pods/
+frontend/ios/.symlinks/
+frontend/ios/Flutter/App.framework
+frontend/ios/Flutter/Flutter.framework
+frontend/ios/Flutter/Flutter.podspec
+frontend/ios/ServiceDefinitions.json
+frontend/ios/Runner/GeneratedPluginRegistrant.*
+
+# Web
+frontend/web/
+
+# Docker
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+tmp/
+temp/
+
+# 测试覆盖率
+coverage/
+.nyc_output/
+
+
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini

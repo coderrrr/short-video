@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "数据库字段变更同步",
+  "description": "当检测到数据库模型文件（backend/app/models/）发生变更时，自动分析变更内容并更新 database/create_tables.sql 文件，确保SQL建表脚本与代码模型保持同步",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "backend/app/models/*.py"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "数据库模型文件已更新。请执行以下操作：\n\n1. 分析变更的模型文件，识别数据库字段的改动（新增、修改、删除字段，索引变更等）\n2. 读取 database/create_tables.sql 文件\n3. 根据模型变更更新对应的 CREATE TABLE 语句\n4. 确保SQL语法正确，字段类型、约束、索引与Python模型定义一致\n5. 保持SQL文件的格式和注释风格\n6. 如果有外键关系变更，同时更新相关表的定义\n\n注意事项：\n- 保持与MySQL语法兼容\n- 字段类型映射要准确（如 String -> VARCHAR, Integer -> INT, DateTime -> DATETIME等）\n- 保留原有的注释和格式\n- 如果是新增表，在文件末尾添加完整的CREATE TABLE语句"
+  }
+}

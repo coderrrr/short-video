@@ -1,0 +1,146 @@
+# 企业短视频学习平台 - Docker Compose 配置
+# 用于本地开发和测试环境
+# 
+# 使用方法：
+# 1. 复制 .env.example 为 .env 并配置环境变量
+# 2. 启动所有服务: docker-compose up -d
+# 3. 仅启动数据库: docker-compose up -d mysql
+# 4. 查看日志: docker-compose logs -f
+# 5. 停止服务: docker-compose down
+# 6. 清理数据: docker-compose down -v
+
+services:
+  # ==================== MySQL 数据库 ====================
+  mysql:
+    image: mysql:8.0
+    container_name: short-video-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_password}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-short_video}
+      MYSQL_USER: ${MYSQL_USER:-short_video_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-short_video_pass}
+      # MySQL 配置优化
+      MYSQL_INITDB_SKIP_TZINFO: 1
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/init:/docker-entrypoint-initdb.d:ro
+      # MySQL 配置文件（可选）
+      # - ./database/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+    command: >
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --max_connections=200
+      --innodb_buffer_pool_size=256M
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-root_password}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - short-video-network
+
+  # ==================== 后端 API 服务 ====================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        - PYTHON_VERSION=3.12
+    container_name: short-video-backend
+    restart: unless-stopped
+    environment:
+      # 数据库配置
+      - DATABASE_URL=mysql+aiomysql://${MYSQL_USER:-short_video_user}:${MYSQL_PASSWORD:-short_video_pass}@mysql:3306/${MYSQL_DATABASE:-short_video}
+      
+      # 存储配置
+      - STORAGE_TYPE=${STORAGE_TYPE:-local}
+      - STORAGE_PATH=/app/storage
+      
+      # AWS S3 配置（生产环境）
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-}
+      - AWS_REGION=${AWS_REGION:-cn-northwest-1}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME:-}
+      
+      # 应用配置
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-change_this_in_production}
+      - DEBUG=${DEBUG:-true}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - MAX_VIDEO_SIZE_MB=${MAX_VIDEO_SIZE_MB:-100}
+      - VIDEO_COMPRESSION_THRESHOLD_MB=${VIDEO_COMPRESSION_THRESHOLD_MB:-50}
+      - SUPPORTED_VIDEO_FORMATS=${SUPPORTED_VIDEO_FORMATS:-mp4,mov,avi}
+      
+      # 企业集成配置
+      - WECHAT_CORP_ID=${WECHAT_CORP_ID:-}
+      - WECHAT_CORP_SECRET=${WECHAT_CORP_SECRET:-}
+      - ENTERPRISE_AUTH_URL=${ENTERPRISE_AUTH_URL:-}
+      - ENTERPRISE_AUTH_CLIENT_ID=${ENTERPRISE_AUTH_CLIENT_ID:-}
+      - ENTERPRISE_AUTH_CLIENT_SECRET=${ENTERPRISE_AUTH_CLIENT_SECRET:-}
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    volumes:
+      # 开发模式：挂载代码目录以支持热重载
+      - ./backend/app:/app/app:ro
+      # 存储目录
+      - storage_data:/app/storage
+      # 日志目录
+      - ./logs/backend:/app/logs
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - short-video-network
+    # 开发模式：启用热重载
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # ==================== 管理后台 Web 服务（可选） ====================
+  # 注意：开发时通常使用 npm run dev 在本地运行，不需要容器化
+  # admin-web:
+  #   build:
+  #     context: ./admin-web
+  #     dockerfile: Dockerfile
+  #   container_name: short-video-admin-web
+  #   restart: unless-stopped
+  #   ports:
+  #     - "${ADMIN_WEB_PORT:-3000}:80"
+  #   environment:
+  #     - VITE_API_BASE_URL=http://backend:8000
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - short-video-network
+
+volumes:
+  # MySQL 数据持久化
+  mysql_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/mysql
+  
+  # 文件存储持久化
+  storage_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./storage
+
+networks:
+  short-video-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
