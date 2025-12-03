@@ -15,7 +15,7 @@ if ! command -v docker &> /dev/null; then
 fi
 
 # 检查 Docker Compose 是否安装
-if ! command -v docker-compose &> /dev/null; then
+if ! command -v docker compose &> /dev/null; then
     echo "错误：未检测到 Docker Compose，请先安装 Docker Compose"
     exit 1
 fi
@@ -40,7 +40,7 @@ mkdir -p backups
 # 启动服务
 echo ""
 echo "启动服务..."
-docker-compose up -d
+docker compose up -d
 
 # 等待 MySQL 启动
 echo ""
@@ -50,13 +50,13 @@ sleep 10
 # 检查 MySQL 健康状态
 echo "检查 MySQL 健康状态..."
 for i in {1..30}; do
-    if docker-compose exec -T mysql mysqladmin ping -h localhost -u root -p${MYSQL_ROOT_PASSWORD:-root_password} &> /dev/null; then
+    if docker compose exec -T mysql mysqladmin ping -h localhost -u root -p${MYSQL_ROOT_PASSWORD:-root_password} &> /dev/null; then
         echo "MySQL 已就绪！"
         break
     fi
     if [ $i -eq 30 ]; then
         echo "错误：MySQL 启动超时"
-        docker-compose logs mysql
+        docker compose logs mysql
         exit 1
     fi
     echo "等待 MySQL 启动... ($i/30)"
@@ -66,12 +66,12 @@ done
 # 检查数据库是否已存在
 echo ""
 echo "检查数据库..."
-DB_EXISTS=$(docker-compose exec -T mysql mysql -uroot -p${MYSQL_ROOT_PASSWORD:-root_password} -e "SHOW DATABASES LIKE 'short_video';" | grep -c "short_video" || true)
+DB_EXISTS=$(docker compose exec -T mysql mysql -uroot -p${MYSQL_ROOT_PASSWORD:-root_password} -e "SHOW DATABASES LIKE 'short_video';" | grep -c "short_video" || true)
 
 if [ "$DB_EXISTS" -eq 0 ]; then
     echo "数据库不存在，开始初始化..."
-    docker-compose exec -T mysql mysql -uroot -p${MYSQL_ROOT_PASSWORD:-root_password} < database/create_database.sql
-    docker-compose exec -T mysql mysql -uroot -p${MYSQL_ROOT_PASSWORD:-root_password} short_video < database/create_tables.sql
+    docker compose exec -T mysql mysql -uroot -p${MYSQL_ROOT_PASSWORD:-root_password} < database/create_database.sql
+    docker compose exec -T mysql mysql -uroot -p${MYSQL_ROOT_PASSWORD:-root_password} short_video < database/create_tables.sql
     echo "数据库初始化完成！"
 else
     echo "数据库已存在，跳过初始化"
@@ -120,7 +120,7 @@ echo "=========================================="
 echo "服务启动成功！"
 echo "=========================================="
 echo ""
-docker-compose ps
+docker compose ps
 echo ""
 echo "访问地址："
 echo "  - 后端 API: http://localhost:8000"
@@ -136,11 +136,11 @@ echo "其他前端服务："
 echo "  - 用户端(Flutter Web): cd frontend && flutter run -d web-server --web-port 8080"
 echo ""
 echo "常用命令："
-echo "  - 查看后端日志: docker-compose logs -f backend"
+echo "  - 查看后端日志: docker compose logs -f backend"
 echo "  - 查看管理后台日志: tail -f logs/admin-web.log"
-echo "  - 停止后端服务: docker-compose stop"
+echo "  - 停止后端服务: docker compose stop"
 echo "  - 停止管理后台: kill \$(cat logs/admin-web.pid)"
-echo "  - 重启服务: docker-compose restart"
+echo "  - 重启服务: docker compose restart"
 echo "  - 查看帮助: make help"
 echo ""
 echo "详细文档请参考: README.md"

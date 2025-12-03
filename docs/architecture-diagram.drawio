@@ -1,0 +1,230 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
+  <diagram name="企业短视频学习平台架构图" id="architecture">
+    <mxGraphModel dx="2066" dy="1119" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2339" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="企业短视频学习平台 - 系统架构图" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="355" y="80" width="600" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="client-layer" value="客户端层" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="80" y="140" width="1150" height="250" as="geometry">
+            <mxRectangle x="80" y="120" width="100" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flutter-h5" value="C端 (Flutter Web/H5)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;verticalAlign=top;" parent="client-layer" vertex="1">
+          <mxGeometry x="40" y="50" width="460" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="flutter-upload" value="视频上传&lt;br&gt;(相机/相册)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" parent="client-layer" vertex="1">
+          <mxGeometry x="60" y="90" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="flutter-feed" value="内容信息流&lt;br&gt;(推荐/关注)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" parent="client-layer" vertex="1">
+          <mxGeometry x="170" y="90" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="flutter-player" value="视频播放器&lt;br&gt;(倍速/手势)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" parent="client-layer" vertex="1">
+          <mxGeometry x="280" y="90" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="flutter-profile" value="个人中心&lt;br&gt;(收藏/历史)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" parent="client-layer" vertex="1">
+          <mxGeometry x="390" y="90" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="flutter-note" value="集成在企业现有App的WebView中&lt;br&gt;也可编译为Native App (iOS/Android)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=2;fontColor=#808080;" parent="client-layer" vertex="1">
+          <mxGeometry x="70" y="170" width="260" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="admin-web" value="管理端 (Vue 3 + Element Plus)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;verticalAlign=top;" parent="client-layer" vertex="1">
+          <mxGeometry x="540" y="50" width="570" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="admin-content" value="内容管理" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;" parent="client-layer" vertex="1">
+          <mxGeometry x="560" y="90" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin-review" value="审核管理" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;" parent="client-layer" vertex="1">
+          <mxGeometry x="670" y="90" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin-tag" value="标签管理" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;" parent="client-layer" vertex="1">
+          <mxGeometry x="780" y="90" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin-analytics" value="数据分析" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;" parent="client-layer" vertex="1">
+          <mxGeometry x="1000" y="90" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin-kol" value="KOL管理" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;" parent="client-layer" vertex="1">
+          <mxGeometry x="890" y="90" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin-note" value="PC Web管理后台&lt;br&gt;响应式设计" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=2;fontColor=#808080;" parent="client-layer" vertex="1">
+          <mxGeometry x="560" y="170" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-flutter-api" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeWidth=2;strokeColor=#666666;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="flutter-h5" target="5sdZKjM0QT3TgfsPzu5s-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="440" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="260" y="400" />
+              <mxPoint x="655" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-admin-api" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeWidth=2;strokeColor=#666666;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="admin-web" target="5sdZKjM0QT3TgfsPzu5s-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="440" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="990" y="400" />
+              <mxPoint x="655" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#666666;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" edge="1" parent="1" source="backend-layer" target="storage-layer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="backend-layer" value="后端服务层 (FastAPI + Python)" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="80" y="540" width="1150" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-8" value="" style="group" vertex="1" connectable="0" parent="backend-layer">
+          <mxGeometry x="50" y="50" width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="content-service" value="内容服务" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-8" vertex="1">
+          <mxGeometry width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-7" value="• 视频上传&lt;div&gt;• 元数据管理&lt;/div&gt;&lt;div&gt;• 审核流程&lt;/div&gt;&lt;div&gt;• 推荐算法&lt;/div&gt;&lt;div&gt;• 搜索和筛选&lt;/div&gt;&lt;div&gt;• 草稿管理&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="5sdZKjM0QT3TgfsPzu5s-8">
+          <mxGeometry x="10" y="35" width="130" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-9" value="" style="group" vertex="1" connectable="0" parent="backend-layer">
+          <mxGeometry x="230" y="50" width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="user-service" value="用户服务" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-9" vertex="1">
+          <mxGeometry width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="user-auth" value="• 认证授权 (JWT)&lt;div&gt;• 用户资料管理&lt;/div&gt;&lt;div&gt;• 关注关系&lt;/div&gt;&lt;div&gt;• 互动记录&lt;/div&gt;&lt;div&gt;• 互动记录&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" parent="5sdZKjM0QT3TgfsPzu5s-9" vertex="1">
+          <mxGeometry x="10" y="35" width="130" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-10" value="" style="group" vertex="1" connectable="0" parent="backend-layer">
+          <mxGeometry x="410" y="50" width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="tag-service" value="标签服务" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-10" vertex="1">
+          <mxGeometry width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="tag-manual" value="• 手动标签分配&lt;div&gt;• 分类管理&lt;/div&gt;&lt;div&gt;• 层次结构&lt;/div&gt;&lt;div&gt;• 多维标签体系&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" parent="5sdZKjM0QT3TgfsPzu5s-10" vertex="1">
+          <mxGeometry x="10" y="35" width="130" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-11" value="" style="group" vertex="1" connectable="0" parent="backend-layer">
+          <mxGeometry x="590" y="50" width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="learning-service" value="学习服务" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-11" vertex="1">
+          <mxGeometry width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="learning-plan" value="• 学习计划&lt;div&gt;• 进度跟踪&lt;/div&gt;&lt;div&gt;• 专题管理&lt;/div&gt;&lt;div&gt;• 合集管理&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" parent="5sdZKjM0QT3TgfsPzu5s-11" vertex="1">
+          <mxGeometry x="10" y="35" width="130" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-12" value="" style="group" vertex="1" connectable="0" parent="backend-layer">
+          <mxGeometry x="770" y="50" width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="notification-service" value="通知服务" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-12" vertex="1">
+          <mxGeometry width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="notification-push" value="• 推送通知&lt;div&gt;• 审核通知&lt;/div&gt;&lt;div&gt;• 互动通知&lt;/div&gt;&lt;div&gt;• 学习提醒&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" parent="5sdZKjM0QT3TgfsPzu5s-12" vertex="1">
+          <mxGeometry x="10" y="35" width="130" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-13" value="" style="group" vertex="1" connectable="0" parent="backend-layer">
+          <mxGeometry x="950" y="50" width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="analytics-service" value="分析服务" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-13" vertex="1">
+          <mxGeometry width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="analytics-content" value="• 内容分析&lt;div&gt;• 用户行为分析&lt;/div&gt;&lt;div&gt;• 排行榜&lt;/div&gt;&lt;div&gt;• 游戏化&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" parent="5sdZKjM0QT3TgfsPzu5s-13" vertex="1">
+          <mxGeometry x="10" y="35" width="130" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-api-backend" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeWidth=2;strokeColor=#666666;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="5sdZKjM0QT3TgfsPzu5s-3" target="backend-layer" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="550" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="storage-layer" value="数据存储层" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="80" y="800" width="1150" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="mysql-env" value="开发环境: Docker MySQL 8.0&lt;br&gt;生产环境: AWS RDS MySQL (Multi-AZ)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=2;fontColor=#666666;" parent="storage-layer" vertex="1">
+          <mxGeometry x="30" y="240" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="storage-env" value="开发环境: 本地文件系统&lt;br&gt;生产环境: AWS S3 + CloudFront CDN" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=2;fontColor=#666666;" parent="storage-layer" vertex="1">
+          <mxGeometry x="335" y="240" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="redis-env" value="生产环境: AWS ElastiCache (Cluster)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=2;fontColor=#666666;" parent="storage-layer" vertex="1">
+          <mxGeometry x="620" y="240" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="queue-env" value="开发: Celery + DB&lt;br&gt;生产: AWS SQS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=2;fontColor=#666666;" parent="storage-layer" vertex="1">
+          <mxGeometry x="930" y="240" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-14" value="" style="group" vertex="1" connectable="0" parent="storage-layer">
+          <mxGeometry x="30" y="50" width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="mysql-db" value="RDS MySQL 数据库" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-14" vertex="1">
+          <mxGeometry width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="mysql-tables" value="• 用户表 (users)&lt;br&gt;• 内容表 (contents)&lt;br&gt;• 标签表 (tags)&lt;br&gt;• 内容标签关联 (content_tags)&lt;br&gt;• 互动记录 (interactions)&lt;br&gt;• 评论表 (comments)&lt;br&gt;• 关注关系 (follows)&lt;br&gt;• 审核记录 (review_records)&lt;br&gt;• 播放进度 (playback_progress)&lt;br&gt;• 通知表 (notifications)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" parent="5sdZKjM0QT3TgfsPzu5s-14" vertex="1">
+          <mxGeometry x="10" y="20" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-15" value="" style="group" vertex="1" connectable="0" parent="storage-layer">
+          <mxGeometry x="320" y="50" width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="object-storage" value="对象存储 (视频/图片)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-15" vertex="1">
+          <mxGeometry width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="storage-files" value="• 视频文件 (videos/)&lt;br&gt;• 封面图片 (covers/)&lt;br&gt;• 用户头像 (avatars/)&lt;br&gt;• 临时文件 (temp/)&lt;br&gt;&lt;br&gt;支持格式:&lt;br&gt;• 视频: MP4, MOV, AVI&lt;br&gt;• 图片: JPEG, PNG" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" parent="5sdZKjM0QT3TgfsPzu5s-15" vertex="1">
+          <mxGeometry x="10" y="20" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-16" value="" style="group" vertex="1" connectable="0" parent="storage-layer">
+          <mxGeometry x="610" y="50" width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="redis-cache" value="Redis 缓存" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-16" vertex="1">
+          <mxGeometry width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="redis-data" value="• 用户会话&lt;br&gt;• 推荐内容缓存&lt;br&gt;• 热门内容缓存&lt;br&gt;• 用户偏好配置&lt;br&gt;• 速率限制计数器" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" parent="5sdZKjM0QT3TgfsPzu5s-16" vertex="1">
+          <mxGeometry x="10" y="20" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-17" value="" style="group" vertex="1" connectable="0" parent="storage-layer">
+          <mxGeometry x="900" y="50" width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="message-queue" value="消息队列" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-17" vertex="1">
+          <mxGeometry width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="queue-tasks" value="• 视频处理任务&lt;br&gt;• 通知发送任务&lt;br&gt;• 数据统计任务&lt;br&gt;• 异步审核任务" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" parent="5sdZKjM0QT3TgfsPzu5s-17" vertex="1">
+          <mxGeometry x="10" y="20" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-3" value="API Gateway / Load Balancer&lt;br&gt;(路由、认证、日志、限流)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="355" y="450" width="600" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-6" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;&quot;&gt;HTTPS/REST API&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="667" y="410" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="external-layer" value="外部集成" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="1260" y="410" width="190" height="540" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-18" value="" style="group" vertex="1" connectable="0" parent="external-layer">
+          <mxGeometry x="20" y="60" width="150" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="wechat-work" value="企业微信" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-18" vertex="1">
+          <mxGeometry width="150" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="wechat-features" value="• 用户认证 (OAuth)&lt;br&gt;• 消息推送&lt;br&gt;• 分享功能" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" parent="5sdZKjM0QT3TgfsPzu5s-18" vertex="1">
+          <mxGeometry x="6.25" y="25" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-19" value="" style="group" vertex="1" connectable="0" parent="external-layer">
+          <mxGeometry x="20" y="225" width="150" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="enterprise-app" value="企业现有App" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-19" vertex="1">
+          <mxGeometry width="150" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="app-features" value="• WebView集成&lt;br&gt;• 用户身份同步&lt;br&gt;• 统一导航" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" parent="5sdZKjM0QT3TgfsPzu5s-19" vertex="1">
+          <mxGeometry x="6.25" y="25" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-20" value="" style="group" vertex="1" connectable="0" parent="external-layer">
+          <mxGeometry x="20" y="410" width="150" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ffmpeg" value="FFmpeg 视频处理" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;verticalAlign=top;" parent="5sdZKjM0QT3TgfsPzu5s-20" vertex="1">
+          <mxGeometry width="150" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ffmpeg-features" value="• 视频压缩&lt;br&gt;• 格式转换&lt;br&gt;• 封面提取" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" parent="5sdZKjM0QT3TgfsPzu5s-20" vertex="1">
+          <mxGeometry x="6.25" y="25" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5sdZKjM0QT3TgfsPzu5s-22" value="网关层" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="380" y="460" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

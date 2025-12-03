@@ -27,7 +27,7 @@ echo ""
 
 # 停止后端服务
 echo "停止后端服务..."
-docker-compose stop
+docker compose stop
 
 echo ""
 echo "=========================================="
@@ -38,5 +38,5 @@ echo "重新启动服务："
 echo "  ./quick-start.sh"
 echo ""
 echo "完全清理（包括数据）："
-echo "  docker-compose down -v"
+echo "  docker compose down -v"
 echo ""

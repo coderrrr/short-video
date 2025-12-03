@@ -118,3 +118,6 @@ coverage/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# Mysql data
+data/*
